@@ -2,13 +2,13 @@
 is an ultra lightweight (< 100 lines) JavaScript text processing helper. It allows you to easily apply a set of regular expression processors or simple tranformations to a block of text.
 
 ## Install
-Simply download `MiniText.min.js` and include it in your project...or create a full custom bundle (see below).
+Simply download `minitext.min.js` and include it in your project...or create a full custom bundle (see below).
 
 ## Usage
 The basic usage is to add a processor then apply them to text.
 
 ```javascript
-MiniText.add({
+minitext.add({
   open: '[face]',
   close: '[/face]'
   render: function(content) {
@@ -16,7 +16,7 @@ MiniText.add({
   }
 });
 
-MiniText('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
+minitext('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
 //test
 //asfljsaflasjf
 //Your face is: :P
@@ -26,14 +26,14 @@ MiniText('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
 If you leave out `close` it defaults to the end of a line.
 
 ```javascript
-MiniText.add({
+minitext.add({
   open: '[face]',
   render: function(content) {
     return 'Your face is: ' + content;
   }
 });
 
-MiniText('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
+minitext('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
 //test
 //asfljsaflasjf
 //Your face is: :P[/face]
@@ -42,14 +42,14 @@ MiniText('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
 
 Leaving out the `open` defautls to beginning of a line.
 ```javascript
-MiniText.add({
+minitext.add({
   close: '[/face]',
   render: function(content) {
     return 'Your face is: ' + content;
   }
 });
 
-MiniText('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
+minitext('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
 //test
 //asfljsaflasjf
 //Your face is: [face]:P
@@ -59,13 +59,13 @@ MiniText('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
 Leaving both out will match any line.
 
 ```javascript
-MiniText.add({
+minitext.add({
   render: function(content) {
     return 'Your face is: ' + content;
   }
 });
 
-MiniText('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
+minitext('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
 //Your face is: test
 //Your face is: asfljsaflasjf
 //Your face is: [face]:P[/face]
@@ -75,14 +75,14 @@ MiniText('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
 You can also provide a custom regular expression, if that is how you roll. Don't forget to provide **a group** for the render content.
 
 ```javascript
-MiniText.add({
+minitext.add({
   regex: /^(test)$/gm
   render: function(content) {
     return 'Your face is: ' + content;
   }
 });
 
-MiniText('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
+minitext('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
 //Your face is: test
 //asfljsaflasjf
 //[face]:P[/face]
@@ -92,7 +92,7 @@ MiniText('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
 Of course you can add multiple processors, which are applied in order of addition.
 
 ```javascript
-MiniText.add({
+minitext.add({
   open: '[face]',
   close: '[/face]'
   render: function(content) {
@@ -100,14 +100,14 @@ MiniText.add({
   }
 });
 
-MiniText.add({
+minitext.add({
   regex: /(:P)/g
   render: function(content) {
     return ':)';
   }
 });
 
-MiniText('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
+minitext('test\nasfljsaflasjf\n[face]:P[/face]\nadfasdfasdfsad');
 //test
 //asfljsaflasjf
 //Your face is: :)
@@ -124,7 +124,7 @@ The nature of MiniText requires a loop to apply all processors to the string. Un
 
 Ex:
 ```javascript
-MiniText.add({
+minitext.add({
   regex: /(test)/g
   render: function() {
     return 'test';
