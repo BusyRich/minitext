@@ -154,7 +154,7 @@ Anything inside `ext/lib` will be included first, and in no particular order, so
 `ext/ext.js` can be used for any number of things, but one suggestion is to add any processors you may need, utilizing the including libraries.
 
 ## Running Tests
-Tests are written in [mocha](http://visionmedia.github.io/mocha/). Run them however you see fit.
+Tests are written in [mocha](http://mochajs.org/). Run them however you see fit.
 
 ## Contributing
 The idea behind MiniText is to be a lightweight helper. As long as the API is maintained and it stays lightweight, I willing to entertain any improvements. Pull requests welcome.
